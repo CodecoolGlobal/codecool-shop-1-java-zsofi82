@@ -31,6 +31,12 @@ public class Initializer implements ServletContextListener {
         //setting up a new supplier
         Supplier houselander = new Supplier("HouseLander", "Bring you home from everywhere to everywhere safely.");
         supplierDataStore.add(houselander);
+        Supplier joker = new Supplier("Joker", "Make bad things");
+        supplierDataStore.add(joker);
+        Supplier scaryClown = new Supplier("ScaryClown", "Can scare you!");
+        supplierDataStore.add(scaryClown);
+        Supplier liberty = new Supplier("Liberty", "Save you from the trouble!");
+        supplierDataStore.add(liberty);
         Supplier houselander2 = new Supplier("HouseLander 2", "Bring you home from everywhere to everywhere safely.");
         supplierDataStore.add(houselander2);
         /*
@@ -41,6 +47,10 @@ public class Initializer implements ServletContextListener {
          */
 
         //setting up a new product category
+        ProductCategory sup = new ProductCategory("Superhero", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
+        productCategoryDataStore.add(sup);
+        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        productCategoryDataStore.add(tablet);
         ProductCategory event = new ProductCategory("Event", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
         productCategoryDataStore.add(event);
         ProductCategory criminalJustice = new ProductCategory("Criminal justice", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
@@ -51,9 +61,15 @@ public class Initializer implements ServletContextListener {
         //setting up a new superPower
         SuperPower fly = new SuperPower("Flyer", "Can fly");
         superPowerDataStore.add(fly);
+        SuperPower scare = new SuperPower("Scary", "Can scare you");
+        superPowerDataStore.add(fly);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", event, houselander, fly));
+        productDataStore.add(new Product("Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", sup, houselander, fly));
+        productDataStore.add(new Product("Joker", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", sup, joker, scare));
+        productDataStore.add(new Product("ScaryClown", new BigDecimal("119"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", sup, scaryClown, scare));
+        productDataStore.add(new Product("Liberty", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", sup, liberty, fly));
+        System.out.println(productDataStore.getAll());
         productDataStore.add(new Product("Houselander 2", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, houselander2, fly));
 
         //        productDataStore.add(new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
