@@ -61,6 +61,12 @@
     margin: 0 0 11px;
 }
 
+h1 {
+    font-family: charlie_dont_surf;
+    color: darkgreen;
+    font-size: 5em;
+}
+
 img {
     object-fit: scale-down;
     max-height: 400px;
@@ -77,12 +83,6 @@ img {
     height: 130px;
     width: auto;
 }
-
-
-/*@font-face {*/
-/*    font-family: 'charlie_dont_surf';*/
-/*    src: URL('/static/css/charlie_dont_surf.ttf') format('ttf');*/
-/*}*/
 
 /* Dropdown */
 .dropdown {
