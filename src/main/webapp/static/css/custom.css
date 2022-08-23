@@ -67,6 +67,11 @@ h1 {
     font-size: 5em;
 }
 
+@font-face {
+    font-family: 'charlie_dont_surf';
+    src: url('/static/css/charlie_dont_surf.ttf');
+}
+
 img {
     object-fit: scale-down;
     max-height: 400px;
