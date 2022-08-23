@@ -61,10 +61,33 @@
     margin: 0 0 11px;
 }
 
-/*@font-face {*/
-/*    font-family: 'charlie_dont_surf';*/
-/*    src: URL('/static/css/charlie_dont_surf.ttf') format('ttf');*/
-/*}*/
+h1 {
+    font-family: charlie_dont_surf;
+    color: darkgreen;
+    font-size: 5em;
+}
+
+@font-face {
+    font-family: 'charlie_dont_surf';
+    src: url('/static/css/charlie_dont_surf.ttf');
+}
+
+img {
+    object-fit: scale-down;
+    max-height: 400px;
+    width: auto;
+}
+
+.card-header {
+    height: 150px;
+    width: auto;
+}
+
+.card-body {
+    padding: 10px;
+    height: 130px;
+    width: auto;
+}
 
 
 /* Category title */
