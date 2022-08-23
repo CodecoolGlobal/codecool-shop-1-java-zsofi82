@@ -70,6 +70,7 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .dropdown-content {
@@ -84,4 +85,11 @@
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* Category title */
+#category-title {
+    font-size: larger;
+    text-align: center;
+    border: 2px solid blue;
 }

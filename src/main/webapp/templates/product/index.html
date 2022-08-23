@@ -40,13 +40,15 @@
             <span>Product category</span>
             <div class="dropdown-content">
                 <th:block th:each="category : ${all_category}">
-                    <a href="#" th:text="${category.getName()}"></a>
+                    <a th:href="@{/(category_id=${category.getId()})}" th:text="${category.getName()}"></a>
                     <br>
                 </th:block>
             </div>
         </div>
-
         <!-- <strong th:text="${category.name}">Category Title</strong> -->
+    </div>
+    <div id="category-title">
+        <strong th:text="${category.getName()}">Category name</strong>
     </div>
 
     <div id="products" class="row">
