@@ -2,8 +2,10 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SuperPowerDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SuperPowerDaoMem;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.config.TemplateEngineUtil;
 import org.thymeleaf.TemplateEngine;
@@ -25,18 +27,25 @@ public class ProductController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+        SuperPowerDao superPowerDao = SuperPowerDaoMem.getInstance();
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore, superPowerDao);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("category", productService.getProductCategory(1));
         context.setVariable("products", productService.getProductsForCategory(1));
         context.setVariable("all_category", productService.getAllProductCategory());
+        context.setVariable("all_superpower", productService.getAllSuperPower());
 
         String categoryId = req.getParameter("category_id");
+        String superPowerId = req.getParameter("superpower_id");
         if(categoryId != null) {
             context.setVariable("products", productService.getProductsForCategory(Integer.parseInt(categoryId)));
             context.setVariable("category", productService.getProductCategory(Integer.parseInt(categoryId)));
+        }
+        if(superPowerId != null) {
+            context.setVariable("products", productService.getProductsForSuperPower(Integer.parseInt(superPowerId)));
+            context.setVariable("superpower", productService.getSuperPower(Integer.parseInt(superPowerId)));
         }
 
 

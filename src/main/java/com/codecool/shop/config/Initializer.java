@@ -29,10 +29,10 @@ public class Initializer implements ServletContextListener {
         SuperPowerDao superPowerDataStore = SuperPowerDaoMem.getInstance();
 
         //setting up a new supplier
-        Supplier houselander = new Supplier("HouseLander", "Bring you home from everywhere to everywhere safely.");
-        supplierDataStore.add(houselander);
-        Supplier houselander2 = new Supplier("HouseLander 2", "Bring you home from everywhere to everywhere safely.");
-        supplierDataStore.add(houselander2);
+        Supplier flyerHouselander = new Supplier("Flyer Houselander", "Bring you home from everywhere to everywhere safely.");
+        supplierDataStore.add(flyerHouselander);
+        Supplier invisibleHouselander = new Supplier("Invisible Houselander", "Bring you home from everywhere to everywhere safely.");
+        supplierDataStore.add(invisibleHouselander);
         /*
         Supplier amazon = new Supplier("Amazon", "Digital content and services");
         supplierDataStore.add(amazon);
@@ -51,10 +51,12 @@ public class Initializer implements ServletContextListener {
         //setting up a new superPower
         SuperPower fly = new SuperPower("Flyer", "Can fly");
         superPowerDataStore.add(fly);
+        SuperPower invisible = new SuperPower("Invisible", "Can be invisble");
+        superPowerDataStore.add(invisible);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", event, houselander, fly));
-        productDataStore.add(new Product("Houselander 2", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, houselander2, fly));
+        productDataStore.add(new Product("Flyer Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", event, flyerHouselander, fly));
+        productDataStore.add(new Product("Invisible Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, invisibleHouselander, invisible));
 
         //        productDataStore.add(new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
 //        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", new BigDecimal("479"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
