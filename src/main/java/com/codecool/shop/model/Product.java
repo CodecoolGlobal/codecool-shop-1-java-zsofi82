@@ -9,13 +9,15 @@ public class Product extends BaseModel {
     private Currency defaultCurrency;
     private ProductCategory productCategory;
     private Supplier supplier;
+    private SuperPower superPower;
 
 
-    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
+    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier, SuperPower superPower) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
+        this.setSuperPower(superPower);
     }
 
     public BigDecimal getDefaultPrice() {
@@ -61,6 +63,15 @@ public class Product extends BaseModel {
         this.supplier.addProduct(this);
     }
 
+    public SuperPower getSuperPower() {
+        return superPower;
+    }
+
+    public void setSuperPower(SuperPower superPower) {
+        this.superPower = superPower;
+        this.productCategory.addProduct(this);
+    }
+
     @Override
     public String toString() {
         return String.format("id: %1$d, " +
@@ -68,12 +79,14 @@ public class Product extends BaseModel {
                         "defaultPrice: %3$f, " +
                         "defaultCurrency: %4$s, " +
                         "productCategory: %5$s, " +
-                        "supplier: %6$s",
+                        "supplier: %6$s" +
+                        "superPower: %7s",
                 this.id,
                 this.name,
                 this.defaultPrice,
                 this.defaultCurrency.toString(),
                 this.productCategory.getName(),
-                this.supplier.getName());
+                this.supplier.getName(),
+                this.superPower.getName());
     }
 }
