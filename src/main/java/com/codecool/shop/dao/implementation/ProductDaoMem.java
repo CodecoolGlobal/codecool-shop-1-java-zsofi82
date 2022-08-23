@@ -60,7 +60,7 @@ public class ProductDaoMem implements ProductDao {
     }
 
     @Override
-    public List<Product> getBy(SuperPower superPower) {
+    public List<Product> getBySuperPower(SuperPower superPower) {
         return data.stream().filter(t -> t.getSuperPower().equals(superPower)).collect(Collectors.toList());
     }
 }

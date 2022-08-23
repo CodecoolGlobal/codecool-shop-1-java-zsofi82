@@ -26,6 +26,7 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -35,6 +36,37 @@
 </div>
 
 <div class="container">
+    <div class="navbar">
+        <div class="dropdown">
+            <span>Product category
+                <i class="fa fa-caret-down"></i>
+            </span>
+            <!-- <button class="dropbtn">Product category
+                <i class="fa fa-caret-down"></i>
+            </button> -->
+            <div class="dropdown-content">
+                <th:block th:each="category : ${all_category}">
+                    <a th:href="@{/(category_id=${category.getId()})}" th:text="${category.getName()}"></a>
+                    <br>
+                </th:block>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span>Superpower
+                <i class="fa fa-caret-down"></i>
+            </span>
+            <!-- <button class="dropbtn">Superpower
+                <i class="fa fa-caret-down"></i>
+            </button> -->
+            <div class="dropdown-content">
+                <th:block th:each="superPower : ${all_superpower}">
+                    <a th:href="@{/(superpower_id=${superPower.getId()})}" th:text="${superPower.getName()}"></a>
+                    <br>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <!--
     <div class="card">
         <div class="dropdown">
             <span>Product category</span>
@@ -45,10 +77,20 @@
                 </th:block>
             </div>
         </div>
-        <!-- <strong th:text="${category.name}">Category Title</strong> -->
+        <div class="dropdown">
+            <span>Superpower</span>
+            <div class="dropdown-content">
+                <th:block th:each="superPower : ${all_superpower}">
+                    <a th:href="@{/(superpower_id=${superPower.getId()})}" th:text="${superPower.getName()}"></a>
+                    <br>
+                </th:block>
+            </div>
+        </div>
     </div>
-    <div id="category-title">
-        <strong th:text="${category.getName()}">Category name</strong>
+    -->
+    <div id="title">
+        <strong th:if="${superpower == null}" th:text="${category.getName()}">Category name</strong>
+        <strong th:if="${superpower != null}" th:text="${superpower.getName()}">Superpower name</strong>
     </div>
 
     <div id="products" class="row">
