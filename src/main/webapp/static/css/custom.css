@@ -60,3 +60,14 @@
 {
     margin: 0 0 11px;
 }
+
+@font-face {
+    font-family: 'charlie_dont_surf';
+    src: url('/static/css/charlie_dont_surf.ttf');
+}
+
+h1 {
+    font-family: charlie_dont_surf;
+    color: darkgreen;
+    font-size: 5em;
+}
