@@ -42,4 +42,12 @@ public class Order extends BaseModel{
             }
         }
     }
+
+    public int getFullPrice() {
+        return products.entrySet().stream()
+            .mapToInt(product ->
+                Integer.parseInt(product.getKey().getPrice()) * product.getValue()
+            )
+            .sum();
+    }
 }
