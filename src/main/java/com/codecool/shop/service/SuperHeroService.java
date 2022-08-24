@@ -6,6 +6,8 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.model.SuperHero;
 import com.codecool.shop.model.SuperPower;
 
+import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.List;
 
 public class SuperHeroService {
@@ -25,4 +27,6 @@ public class SuperHeroService {
         return superPowerDao.find(superPowerId);
     }
     public List<SuperPower> getAllSuperPower(){return superPowerDao.getAll();}
+
+
 }

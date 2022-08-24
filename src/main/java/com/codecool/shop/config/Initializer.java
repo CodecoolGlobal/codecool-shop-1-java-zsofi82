@@ -37,47 +37,59 @@ public class Initializer implements ServletContextListener {
         superHeroDataStore.add(scaryClown);
         SuperHero liberty = new SuperHero("Liberty", "Save you from the trouble!");
         superHeroDataStore.add(liberty);
-        SuperHero houselander2 = new SuperHero("HouseLander 2", "Bring you home from everywhere to everywhere safely.");
-        superHeroDataStore.add(houselander2);
-        SuperHero flyerHouselander = new SuperHero("Flyer Houselander", "Bring you home from everywhere to everywhere safely.");
-        superHeroDataStore.add(flyerHouselander);
-        SuperHero invisibleHouselander = new SuperHero("Invisible Houselander", "Bring you home from everywhere to everywhere safely.");
-        superHeroDataStore.add(invisibleHouselander);
+        SuperHero littleFighter = new SuperHero("Little fighter", "Be aware of Little Fighter.");
+        superHeroDataStore.add(littleFighter);
+        SuperHero santa = new SuperHero("Santa", "Make your Christmas special");
+        superHeroDataStore.add(santa);
+        SuperHero marvelin = new SuperHero("Lady Marvelin", "You know her.");
+        superHeroDataStore.add(marvelin);
 
         //setting up a new product category
-        ProductCategory sup = new ProductCategory("Superhero", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
-        productCategoryDataStore.add(sup);
-        ProductCategory event = new ProductCategory("Event", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
+        ProductCategory pr = new ProductCategory("PR", "All", "All Sup is available for PR and marketing advertisements if it fits to their super powers or image.", new BigDecimal("300"), "USD");
+        productCategoryDataStore.add(pr);
+        ProductCategory event = new ProductCategory("Event", "All", "Organise a big event, a birthday party, a company event..., depend on it's theme, place, conditions our Sups are happy to make your event even more prominent.", new BigDecimal("300"), "USD");
         productCategoryDataStore.add(event);
-        ProductCategory criminalJustice = new ProductCategory("Criminal justice", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
+        ProductCategory criminalJustice = new ProductCategory("Criminal justice", "UpTo18", "To catch a thief, bring peace to a family fight, keep peace on a big sport event... call one of our Sups and they will be your guarantee for piece of mind.", new BigDecimal("300"), "USD");
         productCategoryDataStore.add(criminalJustice);
 
 
         //setting up a new superPower
-        SuperPower fly = new SuperPower("Flyer", "Can fly");
+        SuperPower fly = new SuperPower("Fly", "Can fly");
         superPowerDataStore.add(fly);
         SuperPower scare = new SuperPower("Scary", "Can scare you");
-        superPowerDataStore.add(fly);
+        superPowerDataStore.add(scare);
         SuperPower invisible = new SuperPower("Invisible", "Can be invisble");
         superPowerDataStore.add(invisible);
+        SuperPower fast = new SuperPower("Fast", "Can heal him-/herself");
+        superPowerDataStore.add(fast);
+        SuperPower spitsFire = new SuperPower("Spits fire", "Can spits fire");
+        superPowerDataStore.add(spitsFire);
+        SuperPower strong = new SuperPower("Super strong", "Can hold everything");
+        superPowerDataStore.add(strong);
 
         houselander.addSuperPower(fly);
-        joker.addSuperPower(fly);
+        houselander.addSuperPower(strong);
+        houselander.addSuperPower(fast);
         joker.addSuperPower(scare);
         scaryClown.addSuperPower(scare);
         liberty.addSuperPower(invisible);
-        houselander2.addSuperPower(fly);
-        flyerHouselander.addSuperPower(fly);
-        invisibleHouselander.addSuperPower(invisible);
+        liberty.addSuperPower(fast);
+        liberty.addSuperPower(fly);
+        littleFighter.addSuperPower(strong);
+        santa.addSuperPower(invisible);
+        marvelin.addSuperPower(fly);
+        marvelin.addSuperPower(fast);
+        marvelin.addSuperPower(strong);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", sup, houselander));
-        productDataStore.add(new Product("Joker", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", sup, joker));
-        productDataStore.add(new Product("ScaryClown", new BigDecimal("119"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", sup, scaryClown));
-        productDataStore.add(new Product("Liberty", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", sup, liberty));
-        productDataStore.add(new Product("Houselander 2", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, houselander2));
-        productDataStore.add(new Product("Flyer Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", event, flyerHouselander));
-        productDataStore.add(new Product("Invisible Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, invisibleHouselander));
+        productDataStore.add(new Product("Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", pr, houselander));
+        productDataStore.add(new Product("Joker", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", pr, joker));
+        productDataStore.add(new Product("ScaryClown", new BigDecimal("119"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", pr, scaryClown));
+        productDataStore.add(new Product("Liberty", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", criminalJustice, liberty));
+        productDataStore.add(new Product("Liberty", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", pr, liberty));
+        productDataStore.add(new Product("little Fighter", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, littleFighter));
+        productDataStore.add(new Product("Santa", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", event, santa));
+        productDataStore.add(new Product("Lady Marvelin", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, marvelin));
 
     }
 }
