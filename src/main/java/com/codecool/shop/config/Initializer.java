@@ -3,15 +3,15 @@ package com.codecool.shop.config;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SuperPowerDao;
-import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.SuperHeroDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SuperPowerDaoMem;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.dao.implementation.SuperHeroDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.SuperPower;
-import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.SuperHero;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -25,23 +25,23 @@ public class Initializer implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        SuperHeroDao supplierDataStore = SuperHeroDaoMem.getInstance();
         SuperPowerDao superPowerDataStore = SuperPowerDaoMem.getInstance();
 
         //setting up a new supplier
-        Supplier houselander = new Supplier("HouseLander", "Bring you home from everywhere to everywhere safely.");
+        SuperHero houselander = new SuperHero("HouseLander", "Bring you home from everywhere to everywhere safely.");
         supplierDataStore.add(houselander);
-        Supplier joker = new Supplier("Joker", "Make bad things");
+        SuperHero joker = new SuperHero("Joker", "Make bad things");
         supplierDataStore.add(joker);
-        Supplier scaryClown = new Supplier("ScaryClown", "Can scare you!");
+        SuperHero scaryClown = new SuperHero("ScaryClown", "Can scare you!");
         supplierDataStore.add(scaryClown);
-        Supplier liberty = new Supplier("Liberty", "Save you from the trouble!");
+        SuperHero liberty = new SuperHero("Liberty", "Save you from the trouble!");
         supplierDataStore.add(liberty);
-        Supplier houselander2 = new Supplier("HouseLander 2", "Bring you home from everywhere to everywhere safely.");
+        SuperHero houselander2 = new SuperHero("HouseLander 2", "Bring you home from everywhere to everywhere safely.");
         supplierDataStore.add(houselander2);
-        Supplier flyerHouselander = new Supplier("Flyer Houselander", "Bring you home from everywhere to everywhere safely.");
+        SuperHero flyerHouselander = new SuperHero("Flyer Houselander", "Bring you home from everywhere to everywhere safely.");
         supplierDataStore.add(flyerHouselander);
-        Supplier invisibleHouselander = new Supplier("Invisible Houselander", "Bring you home from everywhere to everywhere safely.");
+        SuperHero invisibleHouselander = new SuperHero("Invisible Houselander", "Bring you home from everywhere to everywhere safely.");
         supplierDataStore.add(invisibleHouselander);
         /*
         Supplier amazon = new Supplier("Amazon", "Digital content and services");

@@ -8,14 +8,14 @@ public class Product extends BaseModel {
     private BigDecimal defaultPrice;
     private Currency defaultCurrency;
     private ProductCategory productCategory;
-    private Supplier supplier;
+    private SuperHero superHero;
     private SuperPower superPower;
 
 
-    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier, SuperPower superPower) {
+    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, SuperHero superHero, SuperPower superPower) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
-        this.setSupplier(supplier);
+        this.setSupplier(superHero);
         this.setProductCategory(productCategory);
         this.setSuperPower(superPower);
     }
@@ -54,13 +54,13 @@ public class Product extends BaseModel {
         this.productCategory.addProduct(this);
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public SuperHero getSupplier() {
+        return superHero;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-        this.supplier.addProduct(this);
+    public void setSupplier(SuperHero superHero) {
+        this.superHero = superHero;
+        this.superHero.addProduct(this);
     }
 
     public SuperPower getSuperPower() {
@@ -86,7 +86,7 @@ public class Product extends BaseModel {
                 this.defaultPrice,
                 this.defaultCurrency.toString(),
                 this.productCategory.getName(),
-                this.supplier.getName(),
+                this.superHero.getName(),
                 this.superPower.getName());
     }
 }
