@@ -45,9 +45,12 @@ public class Initializer implements ServletContextListener {
         superHeroDataStore.add(marvelin);
 
         //setting up a new product category
+
         ProductCategory pr = new ProductCategory("PR", "All", "All Sup is available for PR and marketing advertisements if it fits to their super powers or image.", new BigDecimal("300"), "USD");
         productCategoryDataStore.add(pr);
         ProductCategory event = new ProductCategory("Event", "All", "Organise a big event, a birthday party, a company event..., depend on it's theme, place, conditions our Sups are happy to make your event even more prominent.", new BigDecimal("300"), "USD");
+
+        ProductCategory event = new ProductCategory("Event", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
         productCategoryDataStore.add(event);
         ProductCategory criminalJustice = new ProductCategory("Criminal justice", "UpTo18", "To catch a thief, bring peace to a family fight, keep peace on a big sport event... call one of our Sups and they will be your guarantee for piece of mind.", new BigDecimal("300"), "USD");
         productCategoryDataStore.add(criminalJustice);
@@ -82,6 +85,7 @@ public class Initializer implements ServletContextListener {
         marvelin.addSuperPower(strong);
 
         //setting up products and printing it
+
         productDataStore.add(new Product("Houselander", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", pr, houselander));
         productDataStore.add(new Product("Joker", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", pr, joker));
         productDataStore.add(new Product("ScaryClown", new BigDecimal("119"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", pr, scaryClown));
@@ -90,6 +94,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("little Fighter", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, littleFighter));
         productDataStore.add(new Product("Santa", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", event, santa));
         productDataStore.add(new Product("Lady Marvelin", new BigDecimal("149.9"), "USD", "Great price with extra discount by DirtyDevs shoe store.", criminalJustice, marvelin));
+
 
     }
 }
