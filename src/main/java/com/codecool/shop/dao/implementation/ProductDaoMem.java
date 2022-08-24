@@ -21,7 +21,7 @@ public class ProductDaoMem implements ProductDao {
     private ProductDaoMem() {
     }
 
-    public static ProductDaoMem getInstance() {
+    public static ProductDao getInstance() {
         if (instance == null) {
             instance = new ProductDaoMem();
         }
@@ -59,8 +59,5 @@ public class ProductDaoMem implements ProductDao {
         return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
     }
 
-    @Override
-    public List<Product> getBySuperPower(SuperPower superPower) {
-        return data.stream().filter(t -> t.getSuperPower().equals(superPower)).collect(Collectors.toList());
-    }
+
 }

@@ -16,6 +16,5 @@ public interface ProductDao {
     List<Product> getAll();
     List<Product> getBy(SuperHero superHero);
     List<Product> getBy(ProductCategory productCategory);
-    List<Product> getBySuperPower(SuperPower superPower);
 
 }

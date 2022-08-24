@@ -17,7 +17,7 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
     private ProductCategoryDaoMem() {
     }
 
-    public static ProductCategoryDaoMem getInstance() {
+    public static ProductCategoryDao getInstance() {
         if (instance == null) {
             instance = new ProductCategoryDaoMem();
         }

@@ -1,10 +1,13 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.SuperHeroDao;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.model.SuperHero;
+import com.codecool.shop.model.SuperPower;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SuperHeroDaoMem implements SuperHeroDao {
 
@@ -16,7 +19,7 @@ public class SuperHeroDaoMem implements SuperHeroDao {
     private SuperHeroDaoMem() {
     }
 
-    public static SuperHeroDaoMem getInstance() {
+    public static SuperHeroDao getInstance() {
         if (instance == null) {
             instance = new SuperHeroDaoMem();
         }
@@ -42,5 +45,10 @@ public class SuperHeroDaoMem implements SuperHeroDao {
     @Override
     public List<SuperHero> getAll() {
         return data;
+    }
+
+    @Override
+    public List<SuperHero> getBySuperPower(SuperPower superPower) {
+        return data.stream().filter(t -> t.getSuperPowers().contains(superPower)).collect(Collectors.toList());
     }
 }
