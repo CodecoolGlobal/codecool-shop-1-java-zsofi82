@@ -25,4 +25,10 @@ public class SuperHeroService {
         return superPowerDao.find(superPowerId);
     }
     public List<SuperPower> getAllSuperPower(){return superPowerDao.getAll();}
+
+    public List<SuperPower> getSuperPowerName(int superHeroId){
+        SuperHero superHero = superHeroDao.find(superHeroId);
+        List<SuperPower> superPowerList = superHero.getSuperPowers();
+        return superPowerList;
+    }
 }
