@@ -3,10 +3,11 @@ package com.codecool.shop.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Order {
+public class Order extends BaseModel{
     private final Map<Product, Integer> products;
 
     public Order() {
+        super("");
         products = new HashMap<>();
     }
 
