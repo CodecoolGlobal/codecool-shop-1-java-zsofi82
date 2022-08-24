@@ -13,7 +13,7 @@ public class SuperPowerDaoMem implements SuperPowerDao {
     private SuperPowerDaoMem() {
     }
 
-    public static SuperPowerDaoMem getInstance() {
+    public static SuperPowerDao getInstance() {
         if (instance == null) {
             instance = new SuperPowerDaoMem();
         }

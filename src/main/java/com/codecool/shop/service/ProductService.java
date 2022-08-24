@@ -12,11 +12,9 @@ import java.util.List;
 public class ProductService{
     private ProductDao productDao;
     private ProductCategoryDao productCategoryDao;
-    private SuperPowerDao superPowerDao;
-    public ProductService(ProductDao productDao, ProductCategoryDao productCategoryDao, SuperPowerDao superPowerDao) {
+    public ProductService(ProductDao productDao, ProductCategoryDao productCategoryDao) {
         this.productDao = productDao;
         this.productCategoryDao = productCategoryDao;
-        this.superPowerDao = superPowerDao;
     }
 
     public ProductCategory getProductCategory(int categoryId){
@@ -28,17 +26,9 @@ public class ProductService{
         return productDao.getBy(category);
     }
 
-    public List<Product> getProductsForSuperPower(int superPowerId) {
-        var superPower = superPowerDao.find(superPowerId);
-        return productDao.getBySuperPower(superPower);
-    }
-    public SuperPower getSuperPower(int superPowerId) {
-        return superPowerDao.find(superPowerId);
-    }
 
     public List<ProductCategory> getAllProductCategory() {
         return productCategoryDao.getAll();
     }
-    public List<SuperPower> getAllSuperPower(){return superPowerDao.getAll();}
 
 }

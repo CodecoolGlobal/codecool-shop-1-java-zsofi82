@@ -8,16 +8,14 @@ public class Product extends BaseModel {
     private BigDecimal defaultPrice;
     private Currency defaultCurrency;
     private ProductCategory productCategory;
-    private Supplier supplier;
-    private SuperPower superPower;
+    private SuperHero superHero;
 
 
-    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier, SuperPower superPower) {
+    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, SuperHero superHero) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
-        this.setSupplier(supplier);
+        this.setSupplier(superHero);
         this.setProductCategory(productCategory);
-        this.setSuperPower(superPower);
     }
 
     public BigDecimal getDefaultPrice() {
@@ -54,22 +52,13 @@ public class Product extends BaseModel {
         this.productCategory.addProduct(this);
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public SuperHero getSupplier() {
+        return superHero;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-        this.supplier.addProduct(this);
-    }
-
-    public SuperPower getSuperPower() {
-        return superPower;
-    }
-
-    public void setSuperPower(SuperPower superPower) {
-        this.superPower = superPower;
-        this.productCategory.addProduct(this);
+    public void setSupplier(SuperHero superHero) {
+        this.superHero = superHero;
+        this.superHero.addProduct(this);
     }
 
     @Override
@@ -79,14 +68,12 @@ public class Product extends BaseModel {
                         "defaultPrice: %3$f, " +
                         "defaultCurrency: %4$s, " +
                         "productCategory: %5$s, " +
-                        "supplier: %6$s" +
-                        "superPower: %7s",
+                        "supplier: %6$s",
                 this.id,
                 this.name,
                 this.defaultPrice,
                 this.defaultCurrency.toString(),
                 this.productCategory.getName(),
-                this.supplier.getName(),
-                this.superPower.getName());
+                this.superHero.getName());
     }
 }
