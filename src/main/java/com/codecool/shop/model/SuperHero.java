@@ -6,8 +6,6 @@ import java.util.List;
 public class SuperHero extends BaseModel {
     private List<Product> products;
 
-
-
     private List<SuperPower> superPowers;
 
 

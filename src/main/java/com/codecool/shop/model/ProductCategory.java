@@ -1,13 +1,17 @@
 package com.codecool.shop.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 public class ProductCategory extends BaseModel {
     private String department;
     private List<Product> products;
+    private BigDecimal defaultPrice;
+    private Currency defaultCurrency;
 
-    public ProductCategory(String name, String department, String description) {
+    public ProductCategory(String name, String department, String description, BigDecimal defaultPrice, String currencyString) {
         super(name);
         this.department = department;
         this.products = new ArrayList<>();
@@ -32,6 +36,16 @@ public class ProductCategory extends BaseModel {
     public void addProduct(Product product) {
         this.products.add(product);
     }
+
+    public String getPrice() {
+        return String.valueOf(this.defaultPrice) + " " + this.defaultCurrency.toString();
+    }
+
+    public void setPrice(BigDecimal price, String currency) {
+        this.defaultPrice = price;
+        this.defaultCurrency = Currency.getInstance(currency);
+    }
+
 
     @Override
     public String toString() {

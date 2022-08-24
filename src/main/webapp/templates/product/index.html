@@ -116,19 +116,32 @@
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
+
                 <img class="" src="http://placehold.it/400x250/000/fff"
                      th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text" th:text="${prod.description}">Product description... </p>
                 </div>
                 <div class="card-body">
-                    <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                    </div>
-                    <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
-                    </div>
+                    <form class="form-inline">
+                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"></label>
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                            <option selected>Choose service...</option>
+                            <th:block th:each="category : ${all_category}">
+                            <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                            </th:block>
+                        </select>
+
+                        <button type="submit" class="btn btn-primary my-1">Add to cart</button>
+                    </form>
+<!--                    <div class="card-text">-->
+<!--                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>-->
+<!--                    </div>-->
+<!--                    <div class="card-text">-->
+<!--                        <a class="btn btn-success" href="#">Add to cart</a>-->
+<!--                    </div>-->
                 </div>
             </div>
             <br>
