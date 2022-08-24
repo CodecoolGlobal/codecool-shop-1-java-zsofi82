@@ -8,6 +8,8 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SuperHeroDaoMem;
 import com.codecool.shop.dao.implementation.SuperPowerDaoMem;
+import com.codecool.shop.model.SuperHero;
+import com.codecool.shop.model.SuperPower;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.service.SuperHeroService;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/"})
 public class SuperHeroController extends HttpServlet {
@@ -50,6 +53,10 @@ public class SuperHeroController extends HttpServlet {
             context.setVariable("products", superHeroService.getSuperHeroesForSuperPower(Integer.parseInt(superPowerId)));
             context.setVariable("superpower", superHeroService.getSuperPower(Integer.parseInt(superPowerId)));
         }
+
+        // TEST
+        context.setVariable("all_superheroes", superHeroDao.getAll());
+        context.setVariable("categories", productCategoryDataStore.getAll());
 
 
         // // Alternative setting of the template context
