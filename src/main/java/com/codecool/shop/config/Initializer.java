@@ -50,7 +50,7 @@ public class Initializer implements ServletContextListener {
         productCategoryDataStore.add(pr);
         ProductCategory event = new ProductCategory("Event", "All", "Organise a big event, a birthday party, a company event..., depend on it's theme, place, conditions our Sups are happy to make your event even more prominent.", new BigDecimal("300"), "USD");
 
-        ProductCategory event = new ProductCategory("Event", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
+        //ProductCategory event = new ProductCategory("Event", "Family", "The perfect choice for everyone and for every services. Entertain families, save from and catches bad guys.");
         productCategoryDataStore.add(event);
         ProductCategory criminalJustice = new ProductCategory("Criminal justice", "UpTo18", "To catch a thief, bring peace to a family fight, keep peace on a big sport event... call one of our Sups and they will be your guarantee for piece of mind.", new BigDecimal("300"), "USD");
         productCategoryDataStore.add(criminalJustice);
