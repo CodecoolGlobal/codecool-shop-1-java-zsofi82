@@ -2,27 +2,37 @@ const categoryList = document.querySelectorAll('.category-list');
 const container = document.querySelector('#container');
 const addButton = document.querySelectorAll('#addButton');
 
-function addToCart(clickEvent){
+async function addToCart(clickEvent) {
     const heroId = clickEvent.currentTarget.dataset.eventId;
     const productId = document.querySelector(`select[data-event-id="${heroId}"]`);
 
-    apiPut('/api/order', productId.dataset.eventId, 1, heroId);
+    try {
+       await apiPut('/api/order', productId.dataset.eventId, 1, heroId);
+    } catch (e) {
+        console.log(e);
+    }
 }
 
-function apiPut(url, productId, quantity, heroId){
-    fetch(url, {
-        method: "PUT",
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                productID: productId,
-                quantity: quantity,
-                heroId: heroId
-            }
-        )
-    })
+async function apiPut(url, productId, quantity, heroId) {
+    try {
+        await fetch(url, {
+            method: "PUT",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    productID: productId,
+                    quantity: quantity,
+                    heroID: heroId
+                }
+            )
+        })
+    }catch (e) {
+        console.log(e);
+    }
+
+
 }
 
 async function apiGet(url) {
@@ -70,23 +80,23 @@ async function createTBody(url) {
     });
 }
 
-function increase(clickEvent){
+function increase(clickEvent) {
     let counter = parseInt(clickEvent.currentTarget.nextSibling.innerText);
     counter += 1;
     clickEvent.currentTarget.nextSibling.innerText = counter;
 }
 
-function decrease(clickEvent){
+function decrease(clickEvent) {
     let counter = parseInt(clickEvent.currentTarget.previousSibling.innerText);
-    if(counter !== 0) {
+    if (counter !== 0) {
         counter -= 1;
-    }else{
+    } else {
         counter = 0;
     }
     clickEvent.currentTarget.previousSibling.innerText = counter;
 }
 
-function init(){
+function init() {
     addButton.forEach(element => {
         element.addEventListener('click', addToCart);
     });
