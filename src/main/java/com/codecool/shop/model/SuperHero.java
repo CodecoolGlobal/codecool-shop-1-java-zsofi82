@@ -4,27 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuperHero extends BaseModel {
-    private List<Product> products;
+    private List<ProductCategory> productCategories;
 
     private List<SuperPower> superPowers;
 
 
     public SuperHero(String name, String description) {
         super(name);
-        this.products = new ArrayList<>();
+        this.productCategories = new ArrayList<>();
         this.superPowers = new ArrayList<>();
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
-    public List<Product> getProducts() {
-        return this.products;
-    }
-
-    public void addProduct(Product product) {
-        this.products.add(product);
+    public void addCategory(ProductCategory category) {
+        productCategories.add(category);
     }
 
     public void addSuperPower(SuperPower superPower) {
@@ -39,6 +31,10 @@ public class SuperHero extends BaseModel {
                 this.name,
                 this.description
         );
+    }
+
+    public List<ProductCategory> getProductCategories() {
+        return productCategories;
     }
 
     public List<SuperPower> getSuperPowers() {

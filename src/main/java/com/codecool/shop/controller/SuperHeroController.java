@@ -34,7 +34,7 @@ public class SuperHeroController extends HttpServlet {
         SuperPowerDao superPowerDao = SuperPowerDaoMem.getInstance();
         SuperHeroDao superHeroDao = SuperHeroDaoMem.getInstance();
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
-        SuperHeroService superHeroService = new SuperHeroService(superPowerDao, superHeroDao);
+        SuperHeroService superHeroService = new SuperHeroService(superPowerDao, superHeroDao, productCategoryDataStore);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
@@ -46,8 +46,8 @@ public class SuperHeroController extends HttpServlet {
         String categoryId = req.getParameter("category_id");
         String superPowerId = req.getParameter("superpower_id");
         if(categoryId != null) {
-            context.setVariable("products", productService.getProductsForCategory(Integer.parseInt(categoryId)));
-            context.setVariable("category", productService.getProductCategory(Integer.parseInt(categoryId)));
+            context.setVariable("products", superHeroService.getHeroesForCategory(Integer.parseInt(categoryId)));
+            context.setVariable("category", superHeroService.getProductCategory(Integer.parseInt(categoryId)));
         }
         if(superPowerId != null) {
             context.setVariable("products", superHeroService.getSuperHeroesForSuperPower(Integer.parseInt(superPowerId)));

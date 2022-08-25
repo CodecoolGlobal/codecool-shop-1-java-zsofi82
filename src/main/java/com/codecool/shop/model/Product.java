@@ -58,7 +58,6 @@ public class Product extends BaseModel {
 
     public void setSupplier(SuperHero superHero) {
         this.superHero = superHero;
-        this.superHero.addProduct(this);
     }
 
     @Override
