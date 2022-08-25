@@ -2,6 +2,7 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.SuperHeroDao;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.SuperHero;
 import com.codecool.shop.model.SuperPower;
 
@@ -50,5 +51,11 @@ public class SuperHeroDaoMem implements SuperHeroDao {
     @Override
     public List<SuperHero> getBySuperPower(SuperPower superPower) {
         return data.stream().filter(t -> t.getSuperPowers().contains(superPower)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SuperHero> getByCategory(ProductCategory category) {
+        return data.stream()
+            .filter(hero -> hero.getProductCategories().contains(category)).collect(Collectors.toList());
     }
 }

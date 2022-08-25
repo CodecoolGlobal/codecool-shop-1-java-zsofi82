@@ -8,6 +8,8 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SuperHeroDaoMem;
 import com.codecool.shop.dao.implementation.SuperPowerDaoMem;
+import com.codecool.shop.model.SuperHero;
+import com.codecool.shop.model.SuperPower;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.service.SuperHeroService;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/"})
 public class SuperHeroController extends HttpServlet {
@@ -31,7 +34,7 @@ public class SuperHeroController extends HttpServlet {
         SuperPowerDao superPowerDao = SuperPowerDaoMem.getInstance();
         SuperHeroDao superHeroDao = SuperHeroDaoMem.getInstance();
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
-        SuperHeroService superHeroService = new SuperHeroService(superPowerDao, superHeroDao);
+        SuperHeroService superHeroService = new SuperHeroService(superPowerDao, superHeroDao, productCategoryDataStore);
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
@@ -43,13 +46,17 @@ public class SuperHeroController extends HttpServlet {
         String categoryId = req.getParameter("category_id");
         String superPowerId = req.getParameter("superpower_id");
         if(categoryId != null) {
-            context.setVariable("products", productService.getProductsForCategory(Integer.parseInt(categoryId)));
-            context.setVariable("category", productService.getProductCategory(Integer.parseInt(categoryId)));
+            context.setVariable("products", superHeroService.getHeroesForCategory(Integer.parseInt(categoryId)));
+            context.setVariable("category", superHeroService.getProductCategory(Integer.parseInt(categoryId)));
         }
         if(superPowerId != null) {
             context.setVariable("products", superHeroService.getSuperHeroesForSuperPower(Integer.parseInt(superPowerId)));
             context.setVariable("superpower", superHeroService.getSuperPower(Integer.parseInt(superPowerId)));
         }
+
+        // TEST
+        context.setVariable("all_superheroes", superHeroDao.getAll());
+        context.setVariable("categories", productCategoryDataStore.getAll());
 
 
         // // Alternative setting of the template context

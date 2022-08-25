@@ -1,11 +1,14 @@
 package com.codecool.shop.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 public class SuperPower extends BaseModel {
 
     private List<Product> products;
+
 
     public SuperPower(String name, String description) {
         super(name);
