@@ -23,7 +23,6 @@ async function apiPut(url, productId, quantity, heroId) {
             }
         )
     })
-
 }
 
 async function apiGet(url) {
@@ -45,8 +44,8 @@ async function createTBody() {
         const minusBtn = document.createElement("button");
         let counterSpan = document.createElement("span");
 
-        const heroName = data.heroes[element.heroID].name;
-        const productName = data.productcategories[element.productID].name;
+        const heroName = findItem(data.heroes, element.heroID).name;
+        const productName = findItem(data.productcategories, element.productID).name;
         const quantity = element.quantity;
 
         plusBtn.dataset.superheroId = element.heroID;
@@ -69,6 +68,10 @@ async function createTBody() {
         tr.append(heroNameTd, productNameTd, quantityTd);
         container.appendChild(tr);
     });
+}
+
+function findItem(collection, itemId) {
+    return collection.filter(item => itemId === item.id)[0];
 }
 
 function increase(clickEvent) {
