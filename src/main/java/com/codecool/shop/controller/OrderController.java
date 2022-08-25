@@ -4,6 +4,7 @@ import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.SuperHeroDaoMem;
 import com.codecool.shop.model.OrderItem;
+import com.codecool.shop.model.OrderResponse;
 import com.codecool.shop.service.OrderService;
 import com.google.gson.Gson;
 
@@ -11,8 +12,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.stream.Collectors;
 
 @WebServlet(name = "OrderController", value = "/api/order")
 public class OrderController extends HttpServlet {
@@ -20,7 +19,22 @@ public class OrderController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderService service = new OrderService(
+            OrderDaoMem.getInstance(),
+            ProductCategoryDaoMem.getInstance(),
+            SuperHeroDaoMem.getInstance()
+        );
+        HttpSession currentSession = request.getSession();
+        OrderResponse orderResponse;
 
+        if(currentSession.isNew()) {
+            orderResponse = new OrderResponse();
+        } else {
+            int currentOrderId = (int)currentSession.getAttribute(ORDER_ATTRIBUTE_NAME);
+            orderResponse = service.createOrderResponse(currentOrderId);
+        }
+        String serialized = new Gson().toJson(orderResponse);
+        response.getWriter().println(serialized);
     }
 
     @Override
