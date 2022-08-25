@@ -25,6 +25,15 @@ public class OrderController extends HttpServlet {
             ProductCategoryDaoMem.getInstance(),
             SuperHeroDaoMem.getInstance()
         );
+        int currentOrderId = getSessionOrderId(request, service);
+
+        OrderResponse orderResponse = service.createOrderResponse(currentOrderId);;
+        String serialized = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(orderResponse);
+        response.setContentType("application/json");
+        response.getWriter().println(serialized);
+    }
+
+    private int getSessionOrderId(HttpServletRequest request, OrderService service) {
         HttpSession currentSession = request.getSession();
         int currentOrderId;
 
@@ -34,11 +43,7 @@ public class OrderController extends HttpServlet {
         } else {
             currentOrderId = (int)currentSession.getAttribute(ORDER_ATTRIBUTE_NAME);
         }
-
-        OrderResponse orderResponse = service.createOrderResponse(currentOrderId);;
-        String serialized = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(orderResponse);
-        response.setContentType("application/json");
-        response.getWriter().println(serialized);
+        return currentOrderId;
     }
 
     @Override
@@ -48,15 +53,7 @@ public class OrderController extends HttpServlet {
             ProductCategoryDaoMem.getInstance(),
             SuperHeroDaoMem.getInstance()
         );
-        HttpSession currentSession = request.getSession();
-        int currentOrderId;
-
-        if (currentSession.isNew()) {
-            currentOrderId = service.addNewOrder();
-            currentSession.setAttribute(ORDER_ATTRIBUTE_NAME, currentOrderId);
-        } else {
-            currentOrderId = (int)currentSession.getAttribute(ORDER_ATTRIBUTE_NAME);
-        }
+        int currentOrderId = getSessionOrderId(request, service);
 
         OrderItem updatedItem = new Gson().fromJson(
             request.getReader(),
