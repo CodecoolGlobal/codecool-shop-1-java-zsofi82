@@ -1,10 +1,16 @@
 package com.codecool.shop.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Map;
 
 public class OrderItem {
-    private int productID, quantity, heroID;
-
+    @Expose
+    private int productID;
+    @Expose
+    private int quantity;
+    @Expose
+    private int heroID;
     public OrderItem(int productID, int heroID) {
         this.productID = productID;
         this.heroID = heroID;

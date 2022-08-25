@@ -30,7 +30,8 @@
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="/static/js/order_quantity.js" defer></script>
+    <!-- <script src="/static/js/order_quantity.js" defer></script> -->
+    <script src="/static/js/add_to_cart.js" defer></script>
 </head>
 
 <body>
@@ -65,7 +66,7 @@
         </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button id="cartButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Cart
         </button>
 
@@ -84,20 +85,20 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Superhero</th>
+                                <th scope="col">Hero</th>
                                 <th scope="col">Product</th>
                                 <th scope="col">Quantity</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <th:block th:each="superhero : ${all_superheroes}">
+                            <tbody id="container">
+                            <!-- <th:block th:each="superhero : ${all_superheroes}">
                                 <tr>
                                     <td th:text="${superhero.getName()}"></td>
                                     <td th:each="category : ${categories}"
                                        class="row" th:text="${category.getName()}"></td>
-                                    <td th:attr="data-span-id=${superhero.getId()}" class="quantity"></td>
+                                    <td th:attr="data-superhero-id=${superhero.getId()}" class="quantity"></td>
                                 </tr>
-                            </th:block>
+                            </th:block> -->
                             </tbody>
                         </table>
                     </div>
@@ -126,22 +127,26 @@
                 </div>
                 <div class="card-body">
                     <form class="form-inline">
-                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"></label>
-                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <label class="my-1 mr-2"></label>
+                        <select class="custom-select my-1 mr-sm-2 category-list"
+                                th:attr="data-event-id=${prod.getId()}">
                             <option selected>Choose service...</option>
                             <th:block th:each="category : ${all_category}">
-                            <option th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                                <option class="category" th:id="${category.getId()}" th:value="${category.getId()}"
+                                        th:text="${category.getName()}"></option>
                             </th:block>
                         </select>
 
-                        <button type="submit" class="btn btn-primary my-1">Add to cart</button>
+                        <button id="addButton" type="submit" th:attr="data-event-id=${prod.getId()}" class="btn btn-primary my-1">Add
+                            to cart
+                        </button>
                     </form>
-<!--                    <div class="card-text">-->
-<!--                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>-->
-<!--                    </div>-->
-<!--                    <div class="card-text">-->
-<!--                        <a class="btn btn-success" href="#">Add to cart</a>-->
-<!--                    </div>-->
+                    <!--                    <div class="card-text">-->
+                    <!--                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="card-text">-->
+                    <!--                        <a class="btn btn-success" href="#">Add to cart</a>-->
+                    <!--                    </div>-->
                 </div>
             </div>
             <br>

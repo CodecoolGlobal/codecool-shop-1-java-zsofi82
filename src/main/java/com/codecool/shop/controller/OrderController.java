@@ -7,13 +7,14 @@ import com.codecool.shop.model.OrderItem;
 import com.codecool.shop.model.OrderResponse;
 import com.codecool.shop.service.OrderService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "OrderController", value = "/api/order")
+@WebServlet(name = "OrderController", urlPatterns = {"/api/order"}, loadOnStartup = 2)
 public class OrderController extends HttpServlet {
     private static final String ORDER_ATTRIBUTE_NAME = "order";
 
@@ -33,7 +34,9 @@ public class OrderController extends HttpServlet {
             int currentOrderId = (int)currentSession.getAttribute(ORDER_ATTRIBUTE_NAME);
             orderResponse = service.createOrderResponse(currentOrderId);
         }
-        String serialized = new Gson().toJson(orderResponse);
+
+        String serialized = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(orderResponse);
+        response.setContentType("application/json");
         response.getWriter().println(serialized);
     }
 
