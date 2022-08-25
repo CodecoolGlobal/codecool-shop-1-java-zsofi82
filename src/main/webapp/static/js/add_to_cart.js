@@ -33,6 +33,7 @@ async function apiGet(url) {
 }
 
 async function createTBody() {
+    container.innerHTML = "";
     let data = await apiGet('/api/order');
 
     data.orderitems.forEach(element => {
