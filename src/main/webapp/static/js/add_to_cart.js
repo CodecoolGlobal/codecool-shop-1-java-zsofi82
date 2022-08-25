@@ -1,6 +1,7 @@
 const categoryList = document.querySelectorAll('.category-list');
 const container = document.querySelector('#container');
 const addButton = document.querySelectorAll('#addButton');
+const cartButton = document.querySelector('#cartButton');
 
 async function addToCart(clickEvent) {
     const heroId = clickEvent.currentTarget.dataset.eventId;
@@ -42,8 +43,8 @@ async function apiGet(url) {
     }
 }
 
-async function createTBody(url) {
-    let data = await apiGet(url);
+async function createTBody() {
+    let data = await apiGet('/api/order');
 
     data.orderitems.forEach(element => {
         const tr = document.createElement('tr');
@@ -54,13 +55,13 @@ async function createTBody(url) {
         const minusBtn = document.createElement("button");
         let counterSpan = document.createElement("span");
 
-        const heroName = data.heroes[element.heroId].name;
-        const productName = data.productcategories[element.productId].name;
+        const heroName = data.heroes[element.heroID].name;
+        const productName = data.productcategories[element.productID].name;
         const quantity = element.quantity;
 
-        plusBtn.dataset.superheroId = element.heroId;
-        minusBtn.dataset.superheroId = element.heroId;
-        counterSpan.dataset.superheroId = element.heroId;
+        plusBtn.dataset.superheroId = element.heroID;
+        minusBtn.dataset.superheroId = element.heroID;
+        counterSpan.dataset.superheroId = element.heroID;
         plusBtn.classList.add('btn', 'btn-primary');
         minusBtn.classList.add('btn', 'btn-primary');
 
@@ -100,6 +101,8 @@ function init() {
     addButton.forEach(element => {
         element.addEventListener('click', addToCart);
     });
+
+    cartButton.addEventListener('click', createTBody);
 }
 
 init();
