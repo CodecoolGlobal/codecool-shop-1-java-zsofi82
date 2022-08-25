@@ -37,7 +37,10 @@ async function createTBody() {
     let data = await apiGet('/api/order');
 
     data.orderitems.forEach(element => {
+        const orderId = `${element.heroID};${element.productID}`;
+
         const tr = document.createElement('tr');
+        tr.dataset.orderId = orderId;
         const heroNameTd = document.createElement('td');
         const productNameTd = document.createElement('td');
         const quantityTd = document.createElement('td');
@@ -49,7 +52,6 @@ async function createTBody() {
         const productName = findItem(data.productcategories, element.productID).name;
         const quantity = element.quantity;
 
-        const orderId = `${element.heroID};${element.productID}`;
         plusBtn.dataset.orderId = orderId;
         minusBtn.dataset.orderId = orderId;
         counterSpan.dataset.orderId = orderId;
@@ -84,13 +86,13 @@ function increase(clickEvent) {
 function decrease(clickEvent) {
     const orderId = clickEvent.currentTarget.dataset.orderId;
     const counterElement = document.querySelector(`span[data-order-id="${orderId}"]`);
-    const counter = parseInt(counterElement.innerText);
+    const counter = parseInt(counterElement.innerText) - 1;
     if (counter !== 0) {
-        counterElement.innerText = counter - 1;
+        counterElement.innerText = counter;
     } else {
-        counterElement.innerText = "0";
+        document.querySelector(`tr[data-order-id="${orderId}"]`)
+            .remove();
     }
-
 }
 
 function init() {
