@@ -1,9 +1,15 @@
-const quantity = document.querySelectorAll('.quantity');
-
+//const quantity = document.querySelectorAll('.quantity');
+/*
 function increase(clickEvent){
     let counter = parseInt(clickEvent.currentTarget.nextSibling.innerText);
     counter += 1;
     clickEvent.currentTarget.nextSibling.innerText = counter;
+
+    //let productId = clickEvent.currentTarget.dataset.superheroId;
+    let quantity = clickEvent.currentTarget.nextSibling.innerText;
+
+
+    //apiPut('/api/order', productId, quantity);
 }
 
 function decrease(clickEvent){
@@ -14,6 +20,10 @@ function decrease(clickEvent){
         counter = 0;
     }
     clickEvent.currentTarget.previousSibling.innerText = counter;
+
+    //let productId = clickEvent.currentTarget.dataset.superheroId;
+    let quantity = clickEvent.currentTarget.nextSibling.innerText;
+    //apiPut('/api/order', productId, quantity);
 }
 
 function createButtons(){
@@ -25,9 +35,9 @@ function createButtons(){
         minusBtn.innerText = "-";
         counterSpan.innerText = 0;
 
-        plusBtn.dataset.spanId = element.dataset.spanId;
-        minusBtn.dataset.spanId = element.dataset.spanId;
-        counterSpan.dataset.spanId = element.dataset.spanId;
+        plusBtn.dataset.superheroId = element.dataset.superheroId;
+        minusBtn.dataset.superheroId = element.dataset.superheroId;
+        counterSpan.dataset.superheroId = element.dataset.superheroId;
 
         plusBtn.addEventListener('click', increase);
         minusBtn.addEventListener('click', decrease);
@@ -36,15 +46,8 @@ function createButtons(){
 }
 
 
-data.orderitems.forEach(element => {
-
-        const heroname = data.heroes[element.heroeid].name;
-        const productname = data.productcategories[element.productid].name;
-        const quantity = element.quantity;
-    });
-
 function init(){
     createButtons();
 }
-
-init();
+*/
+//init();

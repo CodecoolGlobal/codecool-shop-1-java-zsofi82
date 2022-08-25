@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/"})
+@WebServlet(name = "superhero", urlPatterns = {"/"}, loadOnStartup = 1)
 public class SuperHeroController extends HttpServlet {
 
     @Override
