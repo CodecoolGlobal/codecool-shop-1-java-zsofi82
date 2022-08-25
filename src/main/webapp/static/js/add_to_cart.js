@@ -6,33 +6,23 @@ const cartButton = document.querySelector('#cartButton');
 async function addToCart(clickEvent) {
     const heroId = clickEvent.currentTarget.dataset.eventId;
     const productId = document.querySelector(`select[data-event-id="${heroId}"]`);
-
-    try {
-       await apiPut('/api/order', productId.dataset.eventId, 1, heroId);
-    } catch (e) {
-        console.log(e);
-    }
+    await apiPut('/api/order', productId.dataset.eventId, 1, heroId);
 }
 
 async function apiPut(url, productId, quantity, heroId) {
-    try {
-        await fetch(url, {
-            method: "PUT",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(
-                {
-                    productID: productId,
-                    quantity: quantity,
-                    heroID: heroId
-                }
-            )
-        })
-    }catch (e) {
-        console.log(e);
-    }
-
+    await fetch(url, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                productID: productId,
+                quantity: quantity,
+                heroID: heroId
+            }
+        )
+    })
 
 }
 
