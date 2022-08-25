@@ -14,9 +14,9 @@ public class Order extends BaseModel{
     }
 
     public void setProductQuantity(ProductCategory product, int quantity) {
-        if (quantity < 1) {
+        /*if (quantity < 1) {
             throw new IllegalArgumentException(String.format("Cant add zero or negative products: %d", quantity));
-        }
+        }*/
         products.put(product, quantity);
     }
 

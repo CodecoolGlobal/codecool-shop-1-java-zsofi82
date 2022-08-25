@@ -10,6 +10,10 @@ public class OrderItem {
         quantity = item.getValue();
     }
 
+    public OrderItem() {
+
+    }
+
     public int getProductID() {
         return productID;
     }
