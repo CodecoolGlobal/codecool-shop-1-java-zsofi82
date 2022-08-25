@@ -55,6 +55,20 @@ public class Initializer implements ServletContextListener {
         ProductCategory criminalJustice = new ProductCategory("Criminal justice", "UpTo18", "To catch a thief, bring peace to a family fight, keep peace on a big sport event... call one of our Sups and they will be your guarantee for piece of mind.", new BigDecimal("300"), "USD");
         productCategoryDataStore.add(criminalJustice);
 
+        //Add categories to Heroes
+        houselander.addCategory(pr);
+        houselander.addCategory(criminalJustice);
+        joker.addCategory(event);
+        scaryClown.addCategory(event);
+        scaryClown.addCategory(criminalJustice);
+        liberty.addCategory(event);
+        liberty.addCategory(pr);
+        liberty.addCategory(criminalJustice);
+        littleFighter.addCategory(event);
+        santa.addCategory(event);
+        santa.addCategory(pr);
+        marvelin.addCategory(criminalJustice);
+
 
         //setting up a new superPower
         SuperPower fly = new SuperPower("Fly", "Can fly");
