@@ -57,6 +57,7 @@ public class Initializer implements ServletContextListener {
 
         //Add categories to Heroes
         houselander.addCategory(pr);
+        houselander.addCategory(event);
         houselander.addCategory(criminalJustice);
         joker.addCategory(event);
         scaryClown.addCategory(event);
@@ -83,6 +84,17 @@ public class Initializer implements ServletContextListener {
         superPowerDataStore.add(spitsFire);
         SuperPower strong = new SuperPower("Super strong", "Can hold everything");
         superPowerDataStore.add(strong);
+        SuperPower shapeShifting = new SuperPower("Shape shifting", "Able to change his/here shape to any other form.");
+        superPowerDataStore.add(shapeShifting);
+        SuperPower healing = new SuperPower("Healing", "Able to heal her/his wounds.");
+        superPowerDataStore.add(healing);
+        SuperPower underwaterControl = new SuperPower("Underwater control", "Able to breathe underwater.");
+        superPowerDataStore.add(underwaterControl);
+        SuperPower weatherControl = new SuperPower("Weather control", "Able to change weather.");
+        superPowerDataStore.add(weatherControl);
+        SuperPower mindControl = new SuperPower("Mind control", "Control the minds of everyone around them.");
+        superPowerDataStore.add(mindControl);
+
 
         houselander.addSuperPower(fly);
         houselander.addSuperPower(strong);

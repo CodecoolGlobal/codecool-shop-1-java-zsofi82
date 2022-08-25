@@ -1,3 +1,13 @@
+.jumbotron {
+    background: #51a6eb;
+}
+
+body {
+    /*background: #ffe400;*/
+    background: #ffc500;
+    font-family: 'Bungee', cursive;
+}
+
 .glyphicon {
     margin-right:5px;
 }
@@ -63,8 +73,9 @@
 
 h1 {
     font-family: charlie_dont_surf;
-    color: darkgreen;
+    color: black;
     font-size: 5em;
+    background-color: #51a6eb;
 }
 
 @font-face {
@@ -91,9 +102,9 @@ img {
 
 /* Category title */
 #title {
-    font-size: larger;
+    font-size: 2em;
     text-align: center;
-    border: 2px solid blue;
+    /*border: 2px solid blue;*/
 }
 /*.card{
     display: inline-block;

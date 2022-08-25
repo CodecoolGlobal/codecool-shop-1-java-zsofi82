@@ -36,6 +36,13 @@ function createButtons(){
 }
 
 
+data.orderitems.forEach(element => {
+
+        const heroname = data.heroes[element.heroeid].name;
+        const productname = data.productcategories[element.productid].name;
+        const quantity = element.quantity;
+    });
+
 function init(){
     createButtons();
 }
