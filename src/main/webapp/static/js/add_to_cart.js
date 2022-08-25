@@ -77,13 +77,27 @@ function findItem(collection, itemId) {
     return collection.filter(item => itemId === item.id)[0];
 }
 
-function increase(clickEvent) {
-    const orderId = clickEvent.currentTarget.dataset.orderId;
-    const counterElement = document.querySelector(`span[data-order-id="${orderId}"]`);
-    counterElement.innerText = parseInt(counterElement.innerText) + 1;
+function parseOrderId(orderId) {
+    return orderId.split(';');
 }
 
-function decrease(clickEvent) {
+
+async function updateOrderItem(orderId, counter) {
+    let heroId, productId;
+    [heroId, productId] = parseOrderId(orderId);
+    await apiPut('/api/order', productId, counter, heroId);
+}
+
+async function increase(clickEvent) {
+    const orderId = clickEvent.currentTarget.dataset.orderId;
+    const counterElement = document.querySelector(`span[data-order-id="${orderId}"]`);
+    const counter = parseInt(counterElement.innerText) + 1;
+    counterElement.innerText = counter;
+
+    await updateOrderItem(orderId, counter);
+}
+
+async function decrease(clickEvent) {
     const orderId = clickEvent.currentTarget.dataset.orderId;
     const counterElement = document.querySelector(`span[data-order-id="${orderId}"]`);
     const counter = parseInt(counterElement.innerText) - 1;
@@ -93,6 +107,8 @@ function decrease(clickEvent) {
         document.querySelector(`tr[data-order-id="${orderId}"]`)
             .remove();
     }
+
+    await updateOrderItem(orderId, counter);
 }
 
 function init() {

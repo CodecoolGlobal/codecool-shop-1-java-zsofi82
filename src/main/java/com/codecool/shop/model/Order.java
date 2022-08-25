@@ -17,6 +17,7 @@ public class Order extends BaseModel{
     public void setProductQuantity(ProductCategory product, SuperHero hero, int quantity) {
         if (quantity < 1) {
             removeProduct(product, hero);
+            return;
         }
         int orderItemIndex = products.indexOf(new OrderItem(product.getId(), hero.getId()));
         if (orderItemIndex == -1) {
@@ -31,6 +32,6 @@ public class Order extends BaseModel{
     }
 
     public void removeProduct(ProductCategory product, SuperHero hero) {
-        products.remove(new OrderItem(product.getId(), hero.getId()));
+        boolean removed = products.remove(new OrderItem(product.getId(), hero.getId()));
     }
 }
