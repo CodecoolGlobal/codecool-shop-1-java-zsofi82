@@ -15,9 +15,9 @@ public class Order extends BaseModel{
     }
 
     public void setProductQuantity(ProductCategory product, SuperHero hero, int quantity) {
-        /*if (quantity < 1) {
-            throw new IllegalArgumentException(String.format("Cant add zero or negative products: %d", quantity));
-        }*/
+        if (quantity < 1) {
+            removeProduct(product, hero);
+        }
         int orderItemIndex = products.indexOf(new OrderItem(product.getId(), hero.getId()));
         if (orderItemIndex == -1) {
             products.add(new OrderItem(product.getId(), hero.getId(), quantity));
