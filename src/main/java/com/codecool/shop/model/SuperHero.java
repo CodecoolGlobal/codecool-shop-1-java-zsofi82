@@ -10,7 +10,7 @@ public class SuperHero extends BaseModel {
 
 
     public SuperHero(String name, String description) {
-        super(name);
+        super(name, description);
         this.productCategories = new ArrayList<>();
         this.superPowers = new ArrayList<>();
     }
