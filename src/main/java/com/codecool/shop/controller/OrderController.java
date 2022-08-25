@@ -26,15 +26,16 @@ public class OrderController extends HttpServlet {
             SuperHeroDaoMem.getInstance()
         );
         HttpSession currentSession = request.getSession();
-        OrderResponse orderResponse;
+        int currentOrderId;
 
         if(currentSession.isNew()) {
-            orderResponse = new OrderResponse();
+            currentOrderId = service.addNewOrder();
+            currentSession.setAttribute(ORDER_ATTRIBUTE_NAME, currentOrderId);
         } else {
-            int currentOrderId = (int)currentSession.getAttribute(ORDER_ATTRIBUTE_NAME);
-            orderResponse = service.createOrderResponse(currentOrderId);
+            currentOrderId = (int)currentSession.getAttribute(ORDER_ATTRIBUTE_NAME);
         }
 
+        OrderResponse orderResponse = service.createOrderResponse(currentOrderId);;
         String serialized = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(orderResponse);
         response.setContentType("application/json");
         response.getWriter().println(serialized);
