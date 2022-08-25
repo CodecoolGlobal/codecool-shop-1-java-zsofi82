@@ -5,8 +5,8 @@ const cartButton = document.querySelector('#cartButton');
 
 async function addToCart(clickEvent) {
     const heroId = clickEvent.currentTarget.dataset.eventId;
-    const productId = document.querySelector(`select[data-event-id="${heroId}"]`);
-    await apiPut('/api/order', productId.dataset.eventId, 1, heroId);
+    const productSelectorElement = document.querySelector(`select[data-event-id="${heroId}"]`);
+    await apiPut('/api/order', productSelectorElement.value, 1, heroId);
 }
 
 async function apiPut(url, productId, quantity, heroId) {
@@ -48,18 +48,18 @@ async function createTBody() {
         const productName = findItem(data.productcategories, element.productID).name;
         const quantity = element.quantity;
 
-        plusBtn.dataset.superheroId = element.heroID;
-        minusBtn.dataset.superheroId = element.heroID;
-        counterSpan.dataset.superheroId = element.heroID;
+        const orderId = `${element.heroID};${element.productID}`;
+        plusBtn.dataset.orderId = orderId;
+        minusBtn.dataset.orderId = orderId;
+        counterSpan.dataset.orderId = orderId;
         plusBtn.classList.add('btn', 'btn-primary');
         minusBtn.classList.add('btn', 'btn-primary');
 
         heroNameTd.innerText = heroName;
         productNameTd.innerText = productName;
-        quantityTd.innerText = quantity;
         plusBtn.innerText = "+";
         minusBtn.innerText = "-";
-        counterSpan.innerText = "0";
+        counterSpan.innerText = quantity;
 
         plusBtn.addEventListener('click', increase);
         minusBtn.addEventListener('click', decrease);
@@ -75,19 +75,21 @@ function findItem(collection, itemId) {
 }
 
 function increase(clickEvent) {
-    let counter = parseInt(clickEvent.currentTarget.nextSibling.innerText);
-    counter += 1;
-    clickEvent.currentTarget.nextSibling.innerText = counter;
+    const orderId = clickEvent.currentTarget.dataset.orderId;
+    const counterElement = document.querySelector(`span[data-order-id="${orderId}"]`);
+    counterElement.innerText = parseInt(counterElement.innerText) + 1;
 }
 
 function decrease(clickEvent) {
-    let counter = parseInt(clickEvent.currentTarget.previousSibling.innerText);
+    const orderId = clickEvent.currentTarget.dataset.orderId;
+    const counterElement = document.querySelector(`span[data-order-id="${orderId}"]`);
+    const counter = parseInt(counterElement.innerText);
     if (counter !== 0) {
-        counter -= 1;
+        counterElement.innerText = counter - 1;
     } else {
-        counter = 0;
+        counterElement.innerText = "0";
     }
-    clickEvent.currentTarget.previousSibling.innerText = counter;
+
 }
 
 function init() {
