@@ -3,10 +3,7 @@ package com.codecool.shop.service;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.SuperHeroDao;
-import com.codecool.shop.model.Order;
-import com.codecool.shop.model.OrderItem;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.SuperHero;
+import com.codecool.shop.model.*;
 
 import java.util.List;
 
@@ -36,5 +33,14 @@ public class OrderService {
         ProductCategory category = productCategoryDao.find(item.getProductID());
         SuperHero hero = superHeroDao.find(item.getHeroID());
         order.setProductQuantity(category, hero, item.getQuantity());
+    }
+
+    public OrderResponse createOrderResponse(int orderId) {
+        Order order = orderDao.find(orderId);
+        return new OrderResponse(
+            superHeroDao.getAll(),
+            productCategoryDao.getAll(),
+            order.getProducts()
+        );
     }
 }
